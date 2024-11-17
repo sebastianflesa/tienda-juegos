@@ -1,53 +1,124 @@
+<style>
+    .input-invalido {
+        border-color: red;
+        color: red;
+    }
+</style>
+
 <main lass="d-flex justify-content-center align-items-center vh-100">
 
     <div class="container" style="max-width: 500px;">
         <h2 class="text-center">Formulario de Registro</h2>
-        <form id="guardar" class="needs-validation" novalidate>
-            <div class="mb-3">
-                <label for="nombreCompleto" class="form-label">Nombre Completo</label>
-                <input type="text" class="form-control" id="nombreCompleto" required>
-                <div class="invalid-feedback">Este campo es obligatorio.</div>
+        <form [formGroup]="formularioRegistro" (ngSubmit)="submitForm()" needs-validation>
+            <div class="form-group">
+                <label for="nombre" [ngClass]="{'input-invalido': formularioRegistro.get('nombre')?.invalid && formularioRegistro.get('nombre')?.touched}">Nombre</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    id="nombre" 
+                    formControlName="nombre"
+                    [ngClass]="{'input-invalido': formularioRegistro.get('nombre')?.invalid && formularioRegistro.get('nombre')?.touched}">
+
+                    <div *ngIf="formularioRegistro.get('nombre')?.hasError('required') && formularioRegistro.get('nombre')?.touched" class="text-danger">
+                        Campo requerido
+                    </div>
             </div>
+
+            <div class="form-group">
+                <label for="nombre_usuario" [ngClass]="{'input-invalido': formularioRegistro.get('nombre_usuario')?.invalid && formularioRegistro.get('nombre_usuario')?.touched}">Nombre de usuario</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    id="nombre_usuario" 
+                    formControlName="nombre_usuario"
+                    [ngClass]="{'input-invalido': formularioRegistro.get('nombre_usuario')?.invalid && formularioRegistro.get('nombre_usuario')?.touched}">
+
+                    <div *ngIf="formularioRegistro.get('nombre_usuario')?.hasError('required') && formularioRegistro.get('nombre_usuario')?.touched" class="text-danger">
+                        Campo requerido
+                    </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email" [ngClass]="{'input-invalido': formularioRegistro.get('email')?.invalid && formularioRegistro.get('email')?.touched}">Email</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    id="email" 
+                    formControlName="email"
+                    [ngClass]="{'input-invalido': formularioRegistro.get('email')?.invalid && formularioRegistro.get('email')?.touched}">
+
+                    <div *ngIf="formularioRegistro.get('email')?.hasError('required') && formularioRegistro.get('email')?.touched" class="text-danger">
+                        Campo requerido
+                    </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password" [ngClass]="{'input-invalido': formularioRegistro.get('password')?.invalid && formularioRegistro.get('password')?.touched}">Contraseña</label>
+                <input 
+                    type="password" 
+                    class="form-control" 
+                    id="password" 
+                    formControlName="password"
+                    [ngClass]="{'input-invalido': formularioRegistro.get('password')?.invalid && formularioRegistro.get('password')?.touched}">
+
+                    <div *ngIf="formularioRegistro.get('password')?.hasError('required') && formularioRegistro.get('password')?.touched" class="text-danger">
+                        La contraseña debe ser entre 6 y 18 caracteres, mayúsculas, minúsculas y números.
+                    </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password2" [ngClass]="{'input-invalido': formularioRegistro.get('password2')?.invalid && formularioRegistro.get('password2')?.touched}">Repetir Contraseña</label>
+                <input 
+                    type="password" 
+                    class="form-control" 
+                    id="password2" 
+                    formControlName="password2"
+                    [ngClass]="{'input-invalido': formularioRegistro.get('password2')?.invalid && formularioRegistro.get('password2')?.touched}">
+
+                    <div *ngIf="formularioRegistro.get('password2')?.hasError('required') && formularioRegistro.get('password2')?.touched" class="text-danger">
+                        Campo requerido
+                    </div>
+                    <div *ngIf="formularioRegistro.get('password2')?.hasError('noIgual') && formularioRegistro.get('password2')?.touched" class="text-danger">
+                        Las contraseñas no coinciden
+                    </div>
+            </div>
+
             
-            <div class="mb-3">
-                <label for="nombreUsuario" class="form-label">Nombre de Usuario</label>
-                <input type="text" class="form-control" id="nombreUsuario" required>
-                <div class="invalid-feedback">Este campo es obligatorio.</div>
+            <div class="form-group">
+                <label for="fecha_nacimiento" [ngClass]="{'input-invalido': formularioRegistro.get('fecha_nacimiento')?.invalid && formularioRegistro.get('fecha_nacimiento')?.touched}">Fecha de Nacimiento</label>
+                <input 
+                    type="date" 
+                    class="form-control" 
+                    id="fecha_nacimiento" 
+                    formControlName="fecha_nacimiento"
+                    [ngClass]="{'input-invalido': formularioRegistro.get('fecha_nacimiento')?.invalid && formularioRegistro.get('fecha_nacimiento')?.touched}">
+
+                    <div *ngIf="formularioRegistro.get('fecha_nacimiento')?.hasError('required') && formularioRegistro.get('fecha_nacimiento')?.touched" class="text-danger">
+                        Campo requerido
+                    </div>
             </div>
+
+            <div class="form-group">
+                <label for="direccion" [ngClass]="{'input-invalido': formularioRegistro.get('direccion')?.invalid && formularioRegistro.get('direccion')?.touched}">Direccion</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    id="direccion" 
+                    formControlName="direccion"
+                    [ngClass]="{'input-invalido': formularioRegistro.get('direccion')?.invalid && formularioRegistro.get('direccion')?.touched}">
+
+                    <div *ngIf="formularioRegistro.get('direccion')?.hasError('required') && formularioRegistro.get('direccion')?.touched" class="text-danger">
+                        Campo requerido
+                    </div>
+            </div>
+
             
-            <div class="mb-3">
-                <label for="correo" class="form-label">Correo Electrónico</label>
-                <input type="email" class="form-control" id="correo" required>
-                <div class="invalid-feedback">Ingresa un correo válido.</div>
-            </div>
-            
-            <div class="mb-3">
-                <label for="clave" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="clave" required minlength="6" maxlength="18">
-                <div class="invalid-feedback">La contraseña debe tener entre 6 y 18 caracteres, incluir un número y una letra mayúscula.</div>
-            </div>
-            
-            <div class="mb-3">
-                <label for="repetirClave" class="form-label">Repetir Contraseña</label>
-                <input type="password" class="form-control" id="repetirClave" required>
-                <div class="invalid-feedback">Las contraseñas deben coincidir.</div>
-            </div>
-            
-            <div class="mb-3">
-                <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
-                <input type="date" class="form-control" id="fechaNacimiento" required>
-                <div class="invalid-feedback">Debes tener al menos 13 años para registrarte.</div>
-            </div>
-            
-            <div class="mb-3">
-                <label for="direccion" class="form-label">Dirección de Despacho (Opcional)</label>
-                <input type="text" class="form-control" id="direccion">
-            </div>
-            
-            <div class="d-flex justify-content-between">
-                <button type="submit" class="btn btn-primary">Enviar</button>
-                <button type="reset" class="btn btn-secondary">Limpiar</button>
-            </div>
+            <button type="submit" class="btn btn-primary btn-block">Registrarse</button>
+            <button type="button" class="btn btn-secondary btn-block" (click)="limpiarFormulario()">Limpiar</button>
+
         </form>
+
+        
+        
     </div>
 </main>
